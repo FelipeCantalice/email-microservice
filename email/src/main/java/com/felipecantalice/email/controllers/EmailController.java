@@ -7,9 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
@@ -18,6 +16,7 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
+    @RequestMapping(value = "/email", method =  RequestMethod.POST)
     public ResponseEntity<EmailModel> sendEmail(@RequestBody @Valid EmailDTO emailDTO){
         EmailModel model = new EmailModel();
         BeanUtils.copyProperties(emailDTO,model);
