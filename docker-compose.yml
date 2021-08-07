@@ -1,12 +1,25 @@
 version: '3'
 
 services:
+  email-microservice:
+    image: springboot-docker-compose-app:1
+    build:
+      context: email
+      dockerfile: Dockerfile
+    volumes:
+      - /email
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - compose-network
+
   postgres-database:
     image: postgres
     environment:
       POSTGRES_PASSWORD: "postgres"
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
       - compose-network
 
